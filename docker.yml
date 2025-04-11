@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  flask:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+    depends_on:
+      - mongo
+      - zap
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  zap:
+    image: owasp/zap2docker-stable
+    command: zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true
+    ports:
+      - "8080:8080"

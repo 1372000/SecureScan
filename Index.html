@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <title>SecureScan</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>SecureScan</h1>
+    <form method="POST">
+        <input type="text" name="url" placeholder="Enter target URL or IP">
+        <button type="submit">Scan</button>
+    </form>
+    {% if zap %}
+        <h2>OWASP ZAP Results</h2>
+        <ul>
+        {% for alert in zap %}
+            <li><strong>{{ alert['alert'] }}</strong>: {{ alert['risk'] }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% if nmap %}
+        <h2>Nmap Protocols Found</h2>
+        <ul>
+        {% for protocol in nmap %}
+            <li>{{ protocol }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
