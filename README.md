@@ -18,6 +18,7 @@ Dockerized the entire application for portability and easy deployment in cloud o
 Designed role-based access controls for secure multi-user access to scan reports and settings.
 
 # Folder Structure 
+```bash
 SecureScan/
 ├── backend/
 │   ├── app.py                     # Flask app entry point
